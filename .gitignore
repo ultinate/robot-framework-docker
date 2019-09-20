@@ -1,2 +1,6 @@
 reports/*
+reports-compose/*
 output/*
+
+*.pyc
+*.swp
