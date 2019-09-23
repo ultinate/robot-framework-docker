@@ -22,23 +22,24 @@ Check that sensor is available in Belimo
 
 
 *** Keywords ***
-user is in belimo web page
+User is in belimo web page
     Open Chrome Browser
     Go To       https://www.belimo.ch
 
-user searches for "${search_text}"
+User searches for "${search_text}"
     Input Text      SearchTerm     ${search_text}
     Press Key       SearchTerm     \\13
     
-there are results containing the item
+There are results containing the item
     Wait Until Page Contains     DR24A-7   timeout=10
+    Capture Page Screenshot
     
-the user can view the item details
+The user can view the item details
     Click Link      DR24A-7
     Title Should Be     DR24A-7 - Drehantrieb 90 Nm
     Capture Page Screenshot
 
-the user can download the installation manual
+The user can download the installation manual
     ${manual_link}=  SetVariable     Antrieb: Montageanleitung (PDF - 392 kb)
     Page Should Contain Link   ${manual_link} 
     Element Attribute Value Should Be    link:${manual_link}   href    https://www.belimo.ch/pdf/z/DR..A_mounting_instruction.pdf
